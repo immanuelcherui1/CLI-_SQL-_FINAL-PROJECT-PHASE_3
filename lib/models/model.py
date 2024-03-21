@@ -17,3 +17,11 @@ class Model:
                 model TEXT
             )
         ''')
+
+    
+    @classmethod
+    def create(cls, model):
+        """ Initialize a new Model instance and save the object to the database """
+        model_ = cls(model)
+        model_.save()
+        return model_

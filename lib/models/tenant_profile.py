@@ -26,6 +26,13 @@ class TenantProfile:
                 FOREIGN KEY (tenant_national_id) REFERENCES profile(national_id)
             )
         ''')
+        
+    @classmethod
+    def create(cls, tenant_national_id, entry_date, room_no, room_cost):
+        """ Initialize a new TenantProfile instance and save the object to the database """
+        tenant_profile = cls(tenant_national_id, entry_date, room_no, room_cost)
+        tenant_profile.save()
+        return tenant_profile
 
     @classmethod
     def get_all(cls):

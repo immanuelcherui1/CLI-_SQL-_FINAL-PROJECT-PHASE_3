@@ -6,8 +6,6 @@ class Profile:
         self.name = name
         self.national_id = national_id
 
-    def save(self):
-        CURSOR.execute("INSERT INTO profiles (name, national_id) VALUES (?, ?)", (self.name, self.national_id))
 
     @classmethod
     def create_table(cls):
@@ -20,3 +18,14 @@ class Profile:
                 CONSTRAINT national_id_length CHECK (LENGTH(CAST(national_id AS TEXT)) = 8)
             )
         ''')
+    
+    def save(self):
+        CURSOR.execute("INSERT INTO profiles (name, national_id) VALUES (?, ?)", (self.name, self.national_id))
+
+    
+    @classmethod
+    def create(cls, name, national_id):
+        """ Initialize a new Profile instance and save the object to the database """
+        profile = cls(name, national_id)
+        profile.save()
+        return profile

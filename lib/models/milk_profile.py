@@ -9,14 +9,14 @@ class MilkProfile:
         self.litres = litres
 
     def save(self):
-        CURSOR.execute("INSERT INTO milk_profile (date, dairy_farmer_national_id, litres) VALUES (?, ?, ?)",
+        CURSOR.execute("INSERT INTO milk_profiles (date, dairy_farmer_national_id, litres) VALUES (?, ?, ?)",
                        (self.date, self.dairy_farmer_national_id, self.litres))
 
     @classmethod
     def create_table(cls):
         """ Create a new table to persist the attributes of MilkProfile instances """
         CURSOR.execute('''
-            CREATE TABLE IF NOT EXISTS milk_profile (
+            CREATE TABLE IF NOT EXISTS milk_profiles (
                 id INTEGER PRIMARY KEY,
                 date TEXT,
                 dairy_farmer_national_id INTEGER,
@@ -24,3 +24,11 @@ class MilkProfile:
                 FOREIGN KEY (dairy_farmer_national_id) REFERENCES profile(national_id)
             )
         ''')
+    
+    
+    @classmethod
+    def create(cls, date, dairy_farmer_national_id, litres):
+        """ Initialize a new MilkProfile instance and save the object to the database """
+        milk_profile = cls(date, dairy_farmer_national_id, litres)
+        milk_profile.save()
+        return milk_profile
