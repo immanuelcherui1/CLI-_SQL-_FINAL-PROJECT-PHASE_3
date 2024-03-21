@@ -39,3 +39,13 @@ class Profile:
             DROP TABLE IF EXISTS profiles;
         """)
         CONN.commit()
+    
+    @classmethod
+    def get_all(cls):
+        """ Retrieve all profiles from the database """
+        CURSOR.execute("""
+            SELECT profiles.name AS NAME, profiles.national_id NATIONAL_ID
+            FROM profiles 
+			ORDER BY NAME;
+        """)
+        return CURSOR.fetchall()

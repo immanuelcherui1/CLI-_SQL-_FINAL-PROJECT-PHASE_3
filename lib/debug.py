@@ -3,7 +3,6 @@
 
 from models.__init__ import CONN, CURSOR
 from models.profile import Profile
-from models.model import Model
 from models.tea_profile import TeaProfile
 from models.milk_profile import MilkProfile
 from models.tenant_profile import TenantProfile
@@ -13,38 +12,31 @@ import ipdb
 def reset_database():
     
     Profile.drop_table()
-    Model.drop_table()
     TeaProfile.drop_table()
     MilkProfile.drop_table()
     TenantProfile.drop_table()
     
     
     Profile.create_table()
-    Model.create_table()
     TeaProfile.create_table()
     MilkProfile.create_table()
     TenantProfile.create_table()
 
     # Seed Profiles
-    Profile.create("George Okumu", 31875378),
-    Profile.create("Naomi Mogi", 37654341),
-    Profile.create("Immanuel Ronoh", 18795402),
-    Profile.create("Sarah Wanjiku", 42345878),
-    Profile.create("Ian Chesire", 37650321),
-    Profile.create("Adriano Suprine", 28769430),
-    Profile.create("Lamech Omwega", 22845878),
-    Profile.create("Samuel Omoding", 18654620),
-    Profile.create("Mary Watiri", 33765032),
-    Profile.create("Sydney Mukisira", 42305070),
-    Profile.create("Hillary Maina", 27600021),
+    Profile.create("George Okumu", 31875378)
+    Profile.create("Naomi Mogi", 37654341)
+    Profile.create("Immanuel Ronoh", 18795402)
+    Profile.create("Sarah Wanjiku", 42345878)
+    Profile.create("Ian Chesire", 37650321)
+    Profile.create("Adriano Suprine", 28769430)
+    Profile.create("Lamech Omwega", 22845878)
+    Profile.create("Samuel Omoding", 18654620)
+    Profile.create("Mary Watiri", 33765032)
+    Profile.create("Sydney Mukisira", 42305070)
+    Profile.create("Hillary Maina", 27600021)
     Profile.create("Philiph Wekullo", 15876543)
     
-
-    # Seed Models
-    Model.create("Tea")
-    Model.create("Milk")
-    Model.create("Tenant")
-
+    
     # Seed Tea Profiles
     TeaProfile.create("2024-03-10", 31875378, 23.3)
     TeaProfile.create("2024-03-10", 33765032, 41.2)

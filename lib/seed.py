@@ -2,7 +2,6 @@
 
 from models.__init__ import CONN, CURSOR
 from models.profile import Profile
-from models.model import Model
 from models.tea_profile import TeaProfile
 from models.milk_profile import MilkProfile
 from models.tenant_profile import TenantProfile
@@ -10,13 +9,11 @@ from models.tenant_profile import TenantProfile
 def seed_database():
     
     Profile.drop_table()
-    Model.drop_table()
     TeaProfile.drop_table()
     MilkProfile.drop_table()
     TenantProfile.drop_table()
     
     Profile.create_table()
-    Model.create_table()
     TeaProfile.create_table()
     MilkProfile.create_table()
     TenantProfile.create_table()
@@ -35,11 +32,6 @@ def seed_database():
     Profile.create("Hillary Maina", 27600021),
     Profile.create("Philiph Wekullo", 15876543)
     
-
-    # Seed Models
-    Model.create("Tea")
-    Model.create("Milk")
-    Model.create("Tenant")
 
     # Seed Tea Profiles
     TeaProfile.create("2024-03-10", 31875378, 23.3)

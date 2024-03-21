@@ -43,3 +43,14 @@ class TeaProfile:
             DROP TABLE IF EXISTS tea_profiles;
         """)
         CONN.commit()
+        
+    @classmethod
+    def get_all(cls):
+        """ Retrieve all tea profiles from the database """
+        CURSOR.execute("""
+            SELECT profiles.name AS PLUCKERS_NAME, tea_profiles.date AS PLUCKING_DATE, tea_profiles.kilos AS KILOS
+            FROM tea_profiles 
+            JOIN profiles ON tea_profiles.pluckers_national_id = profiles.national_id
+        """)
+        return CURSOR.fetchall()
+    

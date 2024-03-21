@@ -42,3 +42,13 @@ class MilkProfile:
             DROP TABLE IF EXISTS milk_profiles;
         """)
         CONN.commit()
+        
+    @classmethod
+    def get_all(cls):
+        """ Retrieve all milk profiles from the database """
+        CURSOR.execute("""
+            SELECT profiles.name AS DAIRY_FARMER_NAME, milk_profiles.date AS MILK_DELIVERY_DATE, milk_profiles.litres AS LITRES
+            FROM milk_profiles 
+            JOIN profiles ON milk_profiles.dairy_farmer_national_id = profiles.national_id
+        """)
+        return CURSOR.fetchall()
