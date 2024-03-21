@@ -1,5 +1,5 @@
 import sqlite3
-from . import CURSOR
+from . import CURSOR,CONN
 
 class Profile:
     def __init__(self, name, national_id):
@@ -18,10 +18,11 @@ class Profile:
                 CONSTRAINT national_id_length CHECK (LENGTH(CAST(national_id AS TEXT)) = 8)
             )
         ''')
+        CONN.commit()
     
     def save(self):
         CURSOR.execute("INSERT INTO profiles (name, national_id) VALUES (?, ?)", (self.name, self.national_id))
-
+        CONN.commit()
     
     @classmethod
     def create(cls, name, national_id):

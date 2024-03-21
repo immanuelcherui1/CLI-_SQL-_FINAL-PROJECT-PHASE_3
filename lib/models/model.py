@@ -1,5 +1,5 @@
 import sqlite3
-from . import CURSOR
+from . import CURSOR,CONN
 
 class Model:
     def __init__(self, model):
@@ -7,6 +7,7 @@ class Model:
 
     def save(self):
         CURSOR.execute("INSERT INTO models (model) VALUES (?)", (self.model,))
+        CONN.commit()
 
     @classmethod
     def create_table(cls):
@@ -17,7 +18,7 @@ class Model:
                 model TEXT
             )
         ''')
-
+        CONN.commit()
     
     @classmethod
     def create(cls, model):

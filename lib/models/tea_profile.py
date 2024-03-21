@@ -1,5 +1,5 @@
 import sqlite3
-from . import CURSOR
+from . import CURSOR,CONN
 from profile import Profile
 
 class TeaProfile:
@@ -11,7 +11,8 @@ class TeaProfile:
     def save(self):
         CURSOR.execute("INSERT INTO tea_profiles (date, pluckers_national_id, kilos) VALUES (?, ?, ?)",
                        (self.date, self.pluckers_national_id, self.kilos))
-
+        CONN.commit()
+        
     @classmethod
     def create_table(cls):
         """ Create a new table to persist the attributes of TeaProfile instances """
@@ -24,6 +25,7 @@ class TeaProfile:
                 FOREIGN KEY (pluckers_national_id) REFERENCES profile(national_id)
             )
         ''')
+        CONN.commit()
 
     
     @classmethod

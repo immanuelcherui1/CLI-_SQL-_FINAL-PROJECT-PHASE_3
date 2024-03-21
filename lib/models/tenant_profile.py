@@ -1,5 +1,5 @@
 import sqlite3
-from . import CURSOR
+from . import CURSOR,CONN
 from profile import Profile
 
 class TenantProfile:
@@ -12,6 +12,7 @@ class TenantProfile:
     def save(self):
         CURSOR.execute("INSERT INTO tenant_profiles (tenant_national_id, entry_date, room_no, room_cost) VALUES (?, ?, ?, ?)",
                        (self.tenant_national_id, self.entry_date, self.room_no, self.room_cost))
+        CONN.commit()
 
     @classmethod
     def create_table(cls):
@@ -26,6 +27,7 @@ class TenantProfile:
                 FOREIGN KEY (tenant_national_id) REFERENCES profile(national_id)
             )
         ''')
+        CONN.commit()
         
     @classmethod
     def create(cls, tenant_national_id, entry_date, room_no, room_cost):
