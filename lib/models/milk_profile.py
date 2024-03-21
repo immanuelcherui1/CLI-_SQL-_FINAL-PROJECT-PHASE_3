@@ -33,3 +33,12 @@ class MilkProfile:
         milk_profile = cls(date, dairy_farmer_national_id, litres)
         milk_profile.save()
         return milk_profile
+    
+    
+    @classmethod
+    def drop_table(cls):
+        """ Drop the table that persists MilkProfile instances """
+        CURSOR.execute("""
+            DROP TABLE IF EXISTS milk_profiles;
+        """)
+        CONN.commit()

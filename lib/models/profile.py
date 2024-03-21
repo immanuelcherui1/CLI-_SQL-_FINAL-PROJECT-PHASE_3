@@ -30,3 +30,12 @@ class Profile:
         profile = cls(name, national_id)
         profile.save()
         return profile
+    
+    
+    @classmethod
+    def drop_table(cls):
+        """ Drop the table that persists Profile instances """
+        CURSOR.execute("""
+            DROP TABLE IF EXISTS profiles;
+        """)
+        CONN.commit()

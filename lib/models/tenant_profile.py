@@ -40,8 +40,17 @@ class TenantProfile:
     def get_all(cls):
         """ Retrieve all tenant profiles from the database """
         CURSOR.execute("""
-            SELECT tenant_profiles.id, tenant_profiles.entry_date, tenant_profiles.room_no, tenant_profiles.room_cost, profiles.name 
+            SELECT profiles.name AS TENANT_NAME, tenant_profiles.entry_date AS ENTRY_DATE, tenant_profiles.room_no AS ROOM_NUMBER, tenant_profiles.room_cost AS ROOM_COST 
             FROM tenant_profiles 
             JOIN profiles ON tenant_profiles.tenant_national_id = profiles.national_id
         """)
         return CURSOR.fetchall()
+    
+    
+    @classmethod
+    def drop_table(cls):
+        """ Drop the table that persists TenantProfile instances """
+        CURSOR.execute("""
+            DROP TABLE IF EXISTS tenant_profiles;
+        """)
+        CONN.commit()

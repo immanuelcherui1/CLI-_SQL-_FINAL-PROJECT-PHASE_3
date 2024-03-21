@@ -26,3 +26,11 @@ class Model:
         model_ = cls(model)
         model_.save()
         return model_
+    
+    @classmethod
+    def drop_table(cls):
+        """ Drop the table that persists Model instances """
+        CURSOR.execute("""
+            DROP TABLE IF EXISTS models;
+        """)
+        CONN.commit()

@@ -34,3 +34,12 @@ class TeaProfile:
         tea_profile = cls(date, pluckers_national_id, kilos)
         tea_profile.save()
         return tea_profile
+    
+    
+    @classmethod
+    def drop_table(cls):
+        """ Drop the table that persists TeaProfile instances """
+        CURSOR.execute("""
+            DROP TABLE IF EXISTS tea_profiles;
+        """)
+        CONN.commit()
