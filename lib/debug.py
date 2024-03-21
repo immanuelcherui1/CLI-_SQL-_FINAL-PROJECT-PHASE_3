@@ -11,6 +11,14 @@ import ipdb
 
 
 def reset_database():
+    
+    Profile.drop_table()
+    Model.drop_table()
+    TeaProfile.drop_table()
+    MilkProfile.drop_table()
+    TenantProfile.drop_table()
+    
+    
     Profile.create_table()
     Model.create_table()
     TeaProfile.create_table()
