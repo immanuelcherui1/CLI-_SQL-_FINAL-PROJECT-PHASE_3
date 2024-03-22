@@ -37,15 +37,29 @@ def list_tenant_records():
 
 
 def find_person_profile_by_national_id():
-    # use a trailing underscore not to override the built-in id function
     national_id_ = input("Enter the national id: ")
     person_profile = Profile.find_by_national_id(national_id_)
     if person_profile:
         print("No:", person_profile.name)
         print("Name:", person_profile.national_id)
-        print("National_ID:", person_profile.id)
-        
-         
+        print("National_ID:", person_profile.id)     
     else:
         print(f'Profile with {national_id_} not found')
-
+   
+        
+    
+def update_profile():
+    # use a trailing underscore not to override the built-in id function
+    profile_id = input("Enter the profile id: ")
+    profile = Profile.find_by_id(profile_id)  # Call the method without passing profile_id
+    if profile:
+        try:
+            new_name = input("Enter the profile's new Name: ")
+            new_national_id = input("Enter the profile's new National_id: ")
+            
+            Profile.update(profile_id, new_name, new_national_id)  # Pass the profile_id, new_name, and new_national_id to the update method
+            print(f'Success: {profile}')
+        except Exception as exc:
+            print("Error updating profile: ", exc)
+    else:
+        print(f'profile {profile_id} not found')
