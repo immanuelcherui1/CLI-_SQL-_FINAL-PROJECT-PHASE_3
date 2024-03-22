@@ -46,3 +46,6 @@ Developing a comprehensive Datu's Management System that encompasses tea farming
 <ol>-Generate reports for rental income and occupancy rates.</ol>
 
 
+
+<h3>PROBLEMS ENCOUNTERED</h3>
+<ol>1. Function "def find_person_profile_by_national_id()" on cli.py - I didn't understand how the code worked, but as the say goes,"If the code works, do not touch!"</ol>
