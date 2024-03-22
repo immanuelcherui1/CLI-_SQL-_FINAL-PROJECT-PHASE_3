@@ -45,6 +45,40 @@ def find_person_profile_by_national_id():
         print("National_ID:", person_profile.id)     
     else:
         print(f'Profile with {national_id_} not found')
+        
+        
+def list_specific_dairy_farmers_records():
+    dairy_farmer_national_id = input("Enter the national id: ")
+    dairy_farmer_profile = Profile.find_by_national_id(dairy_farmer_national_id)
+    if dairy_farmer_profile:
+        print("Dairy Farmer's Name:", dairy_farmer_profile.national_id)
+        milk_records = MilkProfile.find_by_national_id(dairy_farmer_national_id)
+        if milk_records:
+            print("Milk Records:")
+            for record in milk_records:
+                print(f"  Date: {record.date}, Litres: {record.litres}")
+        else:
+            print(f'No milk records found for profile with {dairy_farmer_national_id}')
+    else:
+        print(f'Profile with national ID {dairy_farmer_national_id} not found')
+
+        
+def list_specific_pluckers_records():
+    plucker_national_id = input("Enter the national id: ")
+    plucker_profile = Profile.find_by_national_id(plucker_national_id)
+    if plucker_profile:
+        print("Plucker's Name:", plucker_profile.national_id)
+        tea_records = TeaProfile.find_by_national_id(plucker_national_id)
+        if tea_records:
+            print("Tea Records:")
+            for record in tea_records:
+                print(f"  Date: {record.date}, Kilograms: {record.kilos}")
+        else:
+            print(f'No tea records found for profile with {plucker_national_id}')
+    else:
+        print(f'Profile with national ID {plucker_national_id} not found')
+
+   
    
         
     

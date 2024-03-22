@@ -3,7 +3,8 @@ from . import CURSOR,CONN
 from profile import Profile
 
 class MilkProfile:
-    def __init__(self, date, dairy_farmer_national_id, litres):
+    def __init__(self,id, date, dairy_farmer_national_id, litres):
+        self.id = id
         self.date = date
         self.dairy_farmer_national_id = dairy_farmer_national_id
         self.litres = litres
@@ -52,3 +53,25 @@ class MilkProfile:
             JOIN profiles ON milk_profiles.dairy_farmer_national_id = profiles.national_id
         """)
         return CURSOR.fetchall()
+    
+    
+    @classmethod
+    def find_by_national_id(cls, dairy_farmer_national_id):
+        """ Retrieve a profile from the database by its national_id """
+        CURSOR.execute("SELECT * FROM milk_profiles WHERE dairy_farmer_national_id=?", (dairy_farmer_national_id,))
+        rows = CURSOR.fetchall()
+        if rows:
+            return [cls(*row) for row in rows]
+        else:
+            return None
+    
+        
+    
+    # @classmethod
+    # def update(cls, profile_id, new_name, new_national_id):
+    #     """ Update the attributes of the profile in the database """
+    #     CURSOR.execute("UPDATE profiles SET name=?, national_id=? WHERE id=?", 
+    #                 (new_name, new_national_id, profile_id))
+    #     CONN.commit()
+
+        

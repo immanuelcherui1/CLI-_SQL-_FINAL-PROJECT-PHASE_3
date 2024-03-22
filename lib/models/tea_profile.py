@@ -3,7 +3,8 @@ from . import CURSOR,CONN
 from profile import Profile
 
 class TeaProfile:
-    def __init__(self, date, pluckers_national_id, kilos):
+    def __init__(self,id, date, pluckers_national_id, kilos):
+        self.id = id
         self.date = date
         self.pluckers_national_id = pluckers_national_id
         self.kilos = kilos
@@ -54,3 +55,12 @@ class TeaProfile:
         """)
         return CURSOR.fetchall()
     
+    @classmethod
+    def find_by_national_id(cls, plucker_national_id):
+        """ Retrieve a profile from the database by its national_id """
+        CURSOR.execute("SELECT * FROM tea_profiles WHERE pluckers_national_id=?", (plucker_national_id,))
+        rows = CURSOR.fetchall()
+        if rows:
+            return [cls(*row) for row in rows]
+        else:
+            return None
