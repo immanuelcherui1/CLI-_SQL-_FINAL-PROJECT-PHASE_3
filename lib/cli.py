@@ -5,7 +5,8 @@ from helpers import (
     list_profiles,
     list_milk_records,
     list_tea_records,
-    list_tenant_records
+    list_tenant_records,
+    find_person_profile_by_national_id
 )
 
 
@@ -23,6 +24,8 @@ def main():
             list_tea_records()
         elif choice == "4":
             list_tenant_records()
+        elif choice == "5":
+            find_person_profile_by_national_id()
         else:
             print("Invalid choice")
 
@@ -34,6 +37,7 @@ def menu():
     print("2. Dairy Farmers Records")
     print("3. Pluckers Records")
     print("4. Tenants Records ")
+    print("5. Find Person profile by National ID")
    
 
 

@@ -36,4 +36,16 @@ def list_tenant_records():
         print(tenant_profile) 
 
 
+def find_person_profile_by_national_id():
+    # use a trailing underscore not to override the built-in id function
+    national_id_ = input("Enter the national id: ")
+    person_profile = Profile.find_by_national_id(national_id_)
+    if person_profile:
+        print("No:", person_profile.name)
+        print("Name:", person_profile.national_id)
+        print("National_ID:", person_profile.id)
+        
+         
+    else:
+        print(f'Profile with {national_id_} not found')
 
