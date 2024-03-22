@@ -31,9 +31,10 @@ class MilkProfile:
     @classmethod
     def create(cls, date, dairy_farmer_national_id, litres):
         """ Initialize a new MilkProfile instance and save the object to the database """
-        milk_profile = cls(date, dairy_farmer_national_id, litres)
+        milk_profile = cls(None, date, dairy_farmer_national_id, litres)
         milk_profile.save()
         return milk_profile
+
     
     
     @classmethod
@@ -64,14 +65,12 @@ class MilkProfile:
             return [cls(*row) for row in rows]
         else:
             return None
+           
     
-        
-    
-    # @classmethod
-    # def update(cls, profile_id, new_name, new_national_id):
-    #     """ Update the attributes of the profile in the database """
-    #     CURSOR.execute("UPDATE profiles SET name=?, national_id=? WHERE id=?", 
-    #                 (new_name, new_national_id, profile_id))
-    #     CONN.commit()
+@classmethod
+def update(cls, milk_profile_id, new_date, new_litres):
+    """ Update the attributes of the milk profile in the database """
+    CURSOR.execute("UPDATE milk_profiles SET date=?, litres=? WHERE id=?", 
+                   (new_date, new_litres, milk_profile_id))
+    CONN.commit()
 
-        

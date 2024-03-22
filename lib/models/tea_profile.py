@@ -1,5 +1,5 @@
 import sqlite3
-from . import CURSOR,CONN
+from . import CURSOR, CONN
 from profile import Profile
 
 class TeaProfile:
@@ -23,7 +23,7 @@ class TeaProfile:
                 date TEXT,
                 pluckers_national_id INTEGER,
                 kilos REAL,
-                FOREIGN KEY (pluckers_national_id) REFERENCES profile(national_id)
+                FOREIGN KEY (pluckers_national_id) REFERENCES profiles(national_id)
             )
         ''')
         CONN.commit()
@@ -32,7 +32,7 @@ class TeaProfile:
     @classmethod
     def create(cls, date, pluckers_national_id, kilos):
         """ Initialize a new TeaProfile instance and save the object to the database """
-        tea_profile = cls(date, pluckers_national_id, kilos)
+        tea_profile = cls(None,date, pluckers_national_id, kilos)
         tea_profile.save()
         return tea_profile
     
@@ -57,7 +57,7 @@ class TeaProfile:
     
     @classmethod
     def find_by_national_id(cls, plucker_national_id):
-        """ Retrieve a profile from the database by its national_id """
+        """ Retrieve tea profiles from the database by plucker's national_id """
         CURSOR.execute("SELECT * FROM tea_profiles WHERE pluckers_national_id=?", (plucker_national_id,))
         rows = CURSOR.fetchall()
         if rows:
