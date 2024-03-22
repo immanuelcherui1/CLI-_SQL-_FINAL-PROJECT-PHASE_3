@@ -1,7 +1,7 @@
 # CLI-_SQL-_FINAL-PROJECT-PHASE_3
  
  <h2> DATUS MANAGEMENT SYSTEM {DMS} </h2>
-        <h4>Wish me Happy coding!</h4>
+        
 
 
 <h3>PROBLEM STATEMENT</h3>
@@ -47,5 +47,26 @@ Developing a comprehensive Datu's Management System that encompasses tea farming
 
 
 
-<h3>PROBLEMS ENCOUNTERED</h3>
-<ol>1. Function "def find_person_profile_by_national_id()" on cli.py - I didn't understand how the code worked, but as the say goes,"If the code works, do not touch!"</ol>
+<h3>CHALLENGES ENCOUNTERED</h3>
+<ol>Managing the project within allocated timeframe was challenge as I noticed that my project was huge and needed more time for better features and better improvements </ol>
+
+<ol>Testing and Debugging: Identifying and resolving bugs & errors was a great challenge</ol>
+
+
+<h3>TECHNOLOGIES USED</H3>
+
+<ol>Sqlite3</ol>
+<ol>Python</ol>
+
+
+<h3>FUTURE PLANS</>
+<ol>To add an automatic calculator that calculates and records the amount the Farmer or Plucker owes the Employer.</ol>
+
+<h3> HOW TO RUN THIS PROJECT ON YOUR TERMINAL</h3>
+<h4>Assuming you have cloned the Repository:</h4>
+<ol>1.Open the terminal and run "pipenv update"</ol>
+<ol>2. Run "pipenv shell" to enter into virtual environment</ol>
+<ol>3. Seed the database by running "python3 seed.py" on the Terminal {For this project, It is already seeded}</ol>
+<ol>4. Run "cli.py" on the terminal to interact with the project options</ol>
+
+<h2>HAPPY CODING</>
