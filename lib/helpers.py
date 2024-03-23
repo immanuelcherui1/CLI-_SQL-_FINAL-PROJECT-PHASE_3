@@ -19,29 +19,35 @@ def list_profiles():
         
 def find_person_profile_by_national_id():
     national_id_ = input("Enter the national id: ")
-    person_profile = Profile.find_by_national_id(national_id_)
-    if person_profile:
-        print("No:", person_profile.name)
-        print("Name:", person_profile.national_id)
-        print("National_ID:", person_profile.id)     
+    person_profiles = Profile.find_by_national_id(national_id_)
+    if person_profiles:
+        print(f"Name: {person_profiles.national_id}")
+        print(f"National ID: {person_profiles.age}")
+        print(f"Age: {person_profiles.gender}")
+        print(f"Gender: {person_profiles.id}")
     else:
         print(f'Profile with {national_id_} not found')
+
+    
         
 def update_profile():
-    # use a trailing underscore not to override the built-in id function
-    profile_id = input("Enter the profile id: ")
-    profile = Profile.find_by_id(profile_id)  # Call the method without passing profile_id
+    profile_id = input("Enter the Profile Id OR National Id: ")
+    profile = Profile.find_by_id(profile_id) or Profile.find_by_national_id(profile_id)  
     if profile:
         try:
-            new_name = input("Enter the profile's new Name: ")
-            new_national_id = input("Enter the profile's new National_id: ")
+            new_name = input("Enter the profile's New Name: ")
+            new_national_id = input("Enter the profile's New National Id: ")
+            new_age = input("Enter Profile's New Age: ")
+            new_gender = input("Enter Profile's New Gender: ")
             
-            Profile.update(profile_id, new_name, new_national_id)  # Pass the profile_id, new_name, and new_national_id to the update method
-            print(f'Success: {profile}')
+            Profile.update(profile_id, new_name, new_national_id, new_age, new_gender)  
+            print(f'Successfully updated')
         except Exception as exc:
             print("Error updating profile: ", exc)
     else:
-        print(f'profile {profile_id} not found')
+        print(f'Profile {profile_id} not found')
+
+
         
         
 def create_profile():

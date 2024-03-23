@@ -61,9 +61,10 @@ class Profile:
     @classmethod
     def update(cls, profile_id, new_name, new_national_id, new_age, new_gender):
         """ Update the attributes of the profile in the database """
-        CURSOR.execute("UPDATE profiles SET name=?, national_id=?, age=?, gender=? WHERE id=?", 
-                    (new_name, new_national_id, new_age, new_gender, profile_id))
+        CURSOR.execute("UPDATE profiles SET name=?, national_id=?, age=?, gender=? WHERE id=? OR national_id=?", 
+                    (new_name, new_national_id, new_age, new_gender, profile_id, profile_id))
         CONN.commit()
+
 
 
         
