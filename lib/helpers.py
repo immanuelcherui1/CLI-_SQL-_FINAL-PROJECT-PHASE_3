@@ -10,32 +10,13 @@ from models.tenant_profile import TenantProfile
 def exit_program():
     print("See You Again!")
     exit()
-    
-  
+       
+# FOR PROFILES:
 def list_profiles():
     profile_records = Profile.get_all()
     for profile in profile_records:
         print(profile) 
-
-
-def list_milk_records():
-    milk_records = MilkProfile.get_all()
-    for milk_profile in milk_records:
-        print(milk_profile)
         
-
-def list_tea_records():
-    tea_records = TeaProfile.get_all()
-    for tea_profile in tea_records:
-        print(tea_profile)
-        
-        
-def list_tenant_records():
-    tenant_records = TenantProfile.get_all()
-    for tenant_profile in tenant_records:
-        print(tenant_profile) 
-
-
 def find_person_profile_by_national_id():
     national_id_ = input("Enter the national id: ")
     person_profile = Profile.find_by_national_id(national_id_)
@@ -46,6 +27,43 @@ def find_person_profile_by_national_id():
     else:
         print(f'Profile with {national_id_} not found')
         
+def update_profile():
+    # use a trailing underscore not to override the built-in id function
+    profile_id = input("Enter the profile id: ")
+    profile = Profile.find_by_id(profile_id)  # Call the method without passing profile_id
+    if profile:
+        try:
+            new_name = input("Enter the profile's new Name: ")
+            new_national_id = input("Enter the profile's new National_id: ")
+            
+            Profile.update(profile_id, new_name, new_national_id)  # Pass the profile_id, new_name, and new_national_id to the update method
+            print(f'Success: {profile}')
+        except Exception as exc:
+            print("Error updating profile: ", exc)
+    else:
+        print(f'profile {profile_id} not found')
+        
+        
+def create_profile():
+        name = input("Enter the profile's name: ")
+        national_id = input("Enter the profile's national id: ")
+        age = input("Enter the profile's age: ")
+        gender = input("Enter the profile's gender: ")
+        try:
+            profile = Profile.create(name, national_id, age, gender)
+            print('Successfully Created')
+            
+        except Exception as exc:
+            print("Error creating profile: ", exc)
+        
+    
+
+
+#FOR DAIRY FARMERS
+def list_milk_records():
+    milk_records = MilkProfile.get_all()
+    for milk_profile in milk_records:
+        print(milk_profile)
         
 def list_specific_dairy_farmers_records():
     dairy_farmer_national_id = input("Enter the national id: ")
@@ -62,6 +80,14 @@ def list_specific_dairy_farmers_records():
     else:
         print(f'Profile with national ID {dairy_farmer_national_id} not found')
 
+
+        
+#FOR TEA RECORDS
+def list_tea_records():
+    tea_records = TeaProfile.get_all()
+    for tea_profile in tea_records:
+        print(tea_profile)
+        
         
 def list_specific_pluckers_records():
     plucker_national_id = input("Enter the national id: ")
@@ -78,22 +104,21 @@ def list_specific_pluckers_records():
     else:
         print(f'Profile with national ID {plucker_national_id} not found')
 
+        
+ #FOR TENANTS RECORDS       
+def list_tenant_records():
+    tenant_records = TenantProfile.get_all()
+    for tenant_profile in tenant_records:
+        print(tenant_profile) 
+
+
+
+        
+
+        
+
    
    
         
     
-def update_profile():
-    # use a trailing underscore not to override the built-in id function
-    profile_id = input("Enter the profile id: ")
-    profile = Profile.find_by_id(profile_id)  # Call the method without passing profile_id
-    if profile:
-        try:
-            new_name = input("Enter the profile's new Name: ")
-            new_national_id = input("Enter the profile's new National_id: ")
-            
-            Profile.update(profile_id, new_name, new_national_id)  # Pass the profile_id, new_name, and new_national_id to the update method
-            print(f'Success: {profile}')
-        except Exception as exc:
-            print("Error updating profile: ", exc)
-    else:
-        print(f'profile {profile_id} not found')
+

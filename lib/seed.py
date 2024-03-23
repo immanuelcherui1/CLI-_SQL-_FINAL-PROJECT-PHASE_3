@@ -19,18 +19,19 @@ def seed_database():
     TenantProfile.create_table()
 
     # Seed Profiles
-    Profile.create("George Okumu", 31875378),
-    Profile.create("Naomi Mogi", 37654341),
-    Profile.create("Immanuel Ronoh", 18795402),
-    Profile.create("Sarah Wanjiku", 42345878),
-    Profile.create("Ian Chesire", 37650321),
-    Profile.create("Adriano Suprine", 28769430),
-    Profile.create("Lamech Omwega", 22845878),
-    Profile.create("Samuel Omoding", 18654620),
-    Profile.create("Mary Watiri", 33765032),
-    Profile.create("Sydney Mukisira", 42305070),
-    Profile.create("Hillary Maina", 27600021),
-    Profile.create("Philiph Wekullo", 15876543)
+    Profile.create("George Okumu", 31875378, 34, "Male")
+    Profile.create("Naomi Mogi", 37654341, 32, "Female")
+    Profile.create("Immanuel Ronoh", 18795402, 23, "Male")
+    Profile.create("Sarah Wanjiku", 42345878, 29, "Female")
+    Profile.create("Ian Chesire", 37650321, 23, "Male")
+    Profile.create("Adriano Suprine", 28769430, 25, "Female")
+    Profile.create("Lamech Omwega", 22845878, 30, "Male")
+    Profile.create("Samuel Omoding", 18654620, 18, "Male")
+    Profile.create("Mary Watiri", 33765032, 25, "Female")
+    Profile.create("Sydney Mukisira", 42305070, 21, "Male")
+    Profile.create("Hillary Maina", 27600021, 24, "Female")
+    Profile.create("Philiph Wekullo", 15876543, 33, "Male")
+
     
 
     # Seed Tea Profiles

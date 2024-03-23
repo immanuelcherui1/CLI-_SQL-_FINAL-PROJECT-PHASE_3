@@ -9,10 +9,7 @@ class MilkProfile:
         self.dairy_farmer_national_id = dairy_farmer_national_id
         self.litres = litres
 
-    def save(self):
-        CURSOR.execute("INSERT INTO milk_profiles (date, dairy_farmer_national_id, litres) VALUES (?, ?, ?)",
-                       (self.date, self.dairy_farmer_national_id, self.litres))
-        CONN.commit()
+    
         
     @classmethod
     def create_table(cls):
@@ -26,6 +23,11 @@ class MilkProfile:
                 FOREIGN KEY (dairy_farmer_national_id) REFERENCES profile(national_id)
             )
         ''')
+        CONN.commit()
+        
+    def save(self):
+        CURSOR.execute("INSERT INTO milk_profiles (date, dairy_farmer_national_id, litres) VALUES (?, ?, ?)",
+                       (self.date, self.dairy_farmer_national_id, self.litres))
         CONN.commit()
     
     @classmethod
@@ -67,10 +69,10 @@ class MilkProfile:
             return None
            
     
-@classmethod
-def update(cls, milk_profile_id, new_date, new_litres):
-    """ Update the attributes of the milk profile in the database """
-    CURSOR.execute("UPDATE milk_profiles SET date=?, litres=? WHERE id=?", 
-                   (new_date, new_litres, milk_profile_id))
-    CONN.commit()
+    @classmethod
+    def update(cls, milk_profile_id, new_date, new_litres):
+        """ Update the attributes of the milk profile in the database """
+        CURSOR.execute("UPDATE milk_profiles SET date=?, litres=? WHERE id=?", 
+                    (new_date, new_litres, milk_profile_id))
+        CONN.commit()
 
