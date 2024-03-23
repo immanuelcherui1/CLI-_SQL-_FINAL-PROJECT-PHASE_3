@@ -130,8 +130,27 @@ def delivered_milk_recording():
         print("Enter a Valid Profile Id")
         
         
-            
+def update_farmers_litres():
+    profile_id = input("Enter the Profile Id OR National Id: ")
+    yes_responses = {"Yes", "yes", "YES", "y", "Y"}
+    dairy_farmer_profile = Profile.find_by_id(profile_id) or Profile.find_by_national_id(profile_id)
+    dairy_farmer_national_id = Profile.get_profiles_national_id(profile_id)
+     
+    if dairy_farmer_profile:
+        print(f"Change {dairy_farmer_profile.national_id}'s Milk Records?")
+        confirmation = input("Yes or No: ")
+        if confirmation in yes_responses:
+            new_date = input("Enter the date (YYYY-MM-DD) when the litres were recorded: ")
+            new_litres = input("Enter new litres: ")
+            MilkProfile.update_litres(dairy_farmer_national_id, new_litres, new_date)
+            print("Successfully Changed!")
         
+        else:
+            print("Kindly be Careful Next Time")
+        
+    else:
+        print("Dairy farmer profile not found")
+
 
     
 
@@ -158,6 +177,32 @@ def list_specific_pluckers_records():
             print(f'No tea records found for profile with {plucker_national_id}')
     else:
         print(f'Profile with national ID {plucker_national_id} not found')
+        
+
+def plucked_tea_recording():  
+    profile_id = input("Enter the profile ID: ")
+    plucker_national_id = Profile.get_profiles_national_id(profile_id)
+    yes_responses = {"Yes", "yes", "YES", "y", "Y"}
+    pluckers_profile = Profile.find_by_national_id(plucker_national_id)
+    
+    if plucker_national_id:
+        print(f"Plucked by {pluckers_profile.national_id}?")
+        confirmation = input("Yes or No: ")
+        if confirmation in yes_responses:
+            current_date = datetime.date.today()
+        
+            kilos = input("Enter the kilos of tea plucked: ")
+
+            try:
+                # Create the MilkProfile instance using the provided data
+                MilkProfile.create(current_date, plucker_national_id, kilos)
+                print("Kilos of Plucked tea added successfully.")
+            except Exception as e:
+                print(f"Error adding kilos: {e}")
+        else:
+            print("Kindly be sure next time")
+    else:
+        print("Enter a Valid Profile Id")
 
         
  #FOR TENANTS RECORDS       

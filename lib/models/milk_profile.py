@@ -70,9 +70,11 @@ class MilkProfile:
            
     
     @classmethod
-    def update(cls, milk_profile_id, new_date, new_litres):
-        """ Update the attributes of the milk profile in the database """
-        CURSOR.execute("UPDATE milk_profiles SET date=?, litres=? WHERE id=?", 
-                    (new_date, new_litres, milk_profile_id))
+    def update_litres(cls, dairy_farmer_national_id, new_litres, new_date):
+        """ Update the attributes of the milk in the database """
+        CURSOR.execute("UPDATE milk_profiles SET litres=?, date=? WHERE dairy_farmer_national_id=?", 
+                    (new_litres, new_date, dairy_farmer_national_id))
         CONN.commit()
+
+
 

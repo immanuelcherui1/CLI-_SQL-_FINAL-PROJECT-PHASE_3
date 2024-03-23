@@ -12,7 +12,9 @@ from helpers import (
     list_specific_pluckers_records,
     create_profile,
     delete_profile,
-    delivered_milk_recording
+    delivered_milk_recording,
+    update_farmers_litres,
+    plucked_tea_recording
 )
 
 
@@ -53,6 +55,8 @@ def main():
                     list_specific_dairy_farmers_records()
                 elif new_choice == "3":
                     delivered_milk_recording()
+                elif new_choice == "4":
+                    update_farmers_litres()
                 
                   
         elif choice == "3":
@@ -66,6 +70,8 @@ def main():
                     list_tea_records()
                 elif new_choice == "2":
                     list_specific_pluckers_records()
+                elif new_choice == "3":
+                    plucked_tea_recording()
                       
         elif choice == "4":
             while choice:
@@ -103,17 +109,23 @@ def milk_profile_menu():
     print("1. Dairy Farmers Records")
     print("2. List by Id - Dairy Farmer's Records")
     print("3. Record Delivered Milk")
+    print("4. Change Milk Records Data")
+    
     
 def tea_profile_menu():
     print("Select an option:")
     print("0. Back to main menu")
     print("1. Pluckers Records")
     print("2. List by Id - Plucker's Records")
+    print("3. Recorded Plucked Kilos")
 
 def tenants_profile_menu():
     print("Select an option:")
     print("0. Back to main menu")
     print("1. Tenants Records ")
+    print("2. Update Tenants Info")
+    print("2. Record New Tenant's Data")
+    
     
     
 
