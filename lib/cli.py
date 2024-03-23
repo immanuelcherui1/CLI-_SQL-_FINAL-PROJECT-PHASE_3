@@ -11,7 +11,8 @@ from helpers import (
     list_specific_dairy_farmers_records,
     list_specific_pluckers_records,
     create_profile,
-    delete_profile
+    delete_profile,
+    delivered_milk_recording
 )
 
 
@@ -50,6 +51,8 @@ def main():
                     list_milk_records()
                 elif new_choice == "2":
                     list_specific_dairy_farmers_records()
+                elif new_choice == "3":
+                    delivered_milk_recording()
                 
                   
         elif choice == "3":
@@ -99,6 +102,7 @@ def milk_profile_menu():
     print("0. Back to main menu")
     print("1. Dairy Farmers Records")
     print("2. List by Id - Dairy Farmer's Records")
+    print("3. Record Delivered Milk")
     
 def tea_profile_menu():
     print("Select an option:")

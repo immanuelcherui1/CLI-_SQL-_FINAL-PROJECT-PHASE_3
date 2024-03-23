@@ -4,6 +4,7 @@ from models.profile import Profile
 from models.tea_profile import TeaProfile
 from models.milk_profile import MilkProfile
 from models.tenant_profile import TenantProfile
+import datetime
 
 
     
@@ -99,6 +100,40 @@ def list_specific_dairy_farmers_records():
             print(f'No milk records found for profile with {dairy_farmer_national_id}')
     else:
         print(f'Profile with national ID {dairy_farmer_national_id} not found')
+        
+
+
+
+def delivered_milk_recording():  
+    profile_id = input("Enter the profile ID: ")
+    dairy_farmer_national_id = Profile.get_profiles_national_id(profile_id)
+    yes_responses = {"Yes", "yes", "YES", "y", "Y"}
+    farmers_profile = Profile.find_by_national_id(dairy_farmer_national_id)
+    
+    if dairy_farmer_national_id:
+        print(f"Delivered by {farmers_profile.national_id}?")
+        confirmation = input("Yes or No: ")
+        if confirmation in yes_responses:
+            current_date = datetime.date.today()
+        
+            litres = input("Enter the litres of milk delivered: ")
+
+            try:
+                # Create the MilkProfile instance using the provided data
+                MilkProfile.create(current_date, dairy_farmer_national_id, litres)
+                print("Milk delivered added successfully.")
+            except Exception as e:
+                print(f"Error adding milk delivered: {e}")
+        else:
+            print("Kindly be sure next time")
+    else:
+        print("Enter a Valid Profile Id")
+        
+        
+            
+        
+
+    
 
 
         

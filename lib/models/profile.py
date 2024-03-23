@@ -102,6 +102,23 @@ class Profile:
 
 
 
+    @classmethod
+    def get_profiles_national_id(cls, profile_id):
+        """Retrieve the dairy profile's national ID based on the profile ID."""
+        try:
+            # Execute SQL query to fetch the profile's national ID based on the provided profile ID
+            CURSOR.execute("SELECT national_id FROM profiles WHERE id=?", (profile_id,))
+            row = CURSOR.fetchone()
+            if row:
+                return row[0]  # Return profile's national ID
+            else:
+                print(f"No profile found with profile ID: {profile_id}")
+                return None
+        except Exception as e:
+            print(f"Error fetching profile's national ID: {e}")
+            return None
+
+
         
         
     
