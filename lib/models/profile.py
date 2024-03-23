@@ -66,9 +66,6 @@ class Profile:
         CONN.commit()
 
 
-
-        
-    
     @classmethod
     def find_by_national_id(cls, national_id):
         """ Retrieve a profile from the database by its national_id """
@@ -89,6 +86,22 @@ class Profile:
             return cls(*row)
         else:
             return None
+        
+    @classmethod
+    def delete(cls, national_id):
+        """Delete the profile corresponding to the given national id"""
+        try:
+            CURSOR.execute("""
+                DELETE FROM profiles
+                WHERE national_id = ?
+            """, (national_id,))
+            CONN.commit()
+            print("Profile deleted successfully")
+        except sqlite3.Error as e:
+            print(f"Error deleting profile: {e}")
+
+
+
         
         
     

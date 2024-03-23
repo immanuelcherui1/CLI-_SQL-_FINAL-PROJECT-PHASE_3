@@ -10,7 +10,8 @@ from helpers import (
     update_profile,
     list_specific_dairy_farmers_records,
     list_specific_pluckers_records,
-    create_profile
+    create_profile,
+    delete_profile
 )
 
 
@@ -35,6 +36,8 @@ def main():
                     update_profile()   
                 elif new_choice == "4":
                     create_profile()
+                elif new_choice == "5":
+                    delete_profile()
         
         elif choice == "2":
             while choice:
@@ -89,6 +92,7 @@ def all_profiles_menu():
     print("2. Find Person profile by National ID")
     print("3. Update Profile")
     print("4. Create Profile")
+    print("5. Delete Profile")
        
 def milk_profile_menu():
     print("Select an option:")

@@ -62,7 +62,21 @@ def create_profile():
         except Exception as exc:
             print("Error creating profile: ", exc)
         
-    
+def delete_profile():
+    national_id = input("Enter the profile's National Id: ")
+    yes_responses = {"Yes", "yes", "YES", "y", "Y"}
+    profile = Profile.find_by_national_id(national_id)
+    if profile: 
+        print(f"Are you sure you want to delete {profile.national_id}?")
+        confirmation = input("Enter Yes or No: ")
+        if confirmation in yes_responses:
+            Profile.delete(national_id)
+            print(f"{profile.national_id} Deleted Successfully")
+        else:
+            print("Deletion Unsuccessful")
+    else:
+        print(f'Profile {national_id} not found')
+
 
 
 #FOR DAIRY FARMERS
